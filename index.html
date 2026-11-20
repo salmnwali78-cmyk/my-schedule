@@ -1,23 +1,51 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>نظام سلمان الشخصي — اليوم، الشهر، والسنة</title>
+  <meta name="theme-color" content="#09090b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="نظام تقي الدين" />
+  <title>نظام تقي الدين الشخصي — الأسود والذهبي</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%2309090b'/%3E%3Crect x='6' y='6' width='116' height='116' rx='24' fill='none' stroke='%23d4af37' stroke-width='4'/%3E%3Ctext x='64' y='78' text-anchor='middle' font-size='54' font-family='Arial,sans-serif' font-weight='bold' fill='%23f5d061'%3E%E2%9C%93%3C/text%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%2309090b'/%3E%3Ctext x='64' y='78' text-anchor='middle' font-size='54' font-family='Arial,sans-serif' font-weight='bold' fill='%23f5d061'%3E%E2%9C%93%3C/text%3E%3C/svg%3E" />
+  <script>
+    const manifestData = {
+      name: "نظام تقي الدين الشخصي",
+      short_name: "تقي الدين",
+      start_url: "./",
+      display: "standalone",
+      background_color: "#09090b",
+      theme_color: "#09090b",
+      icons: [
+        {
+          src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%2309090b'/%3E%3Crect x='10' y='10' width='172' height='172' rx='34' fill='none' stroke='%23d4af37' stroke-width='6'/%3E%3Ctext x='96' y='116' text-anchor='middle' font-size='82' font-family='Arial,sans-serif' font-weight='bold' fill='%23f5d061'%3E%E2%9C%93%3C/text%3E%3C/svg%3E",
+          sizes: "192x192",
+          type: "image/svg+xml"
+        }
+      ]
+    };
+    const manifestBlob = new Blob([JSON.stringify(manifestData)], { type: "application/manifest+json" });
+    const manifestLink = document.createElement("link");
+    manifestLink.rel = "manifest";
+    manifestLink.href = URL.createObjectURL(manifestBlob);
+    document.head.appendChild(manifestLink);
+  </script>
   <style>
     :root {
-      --bg: #070b14;
-      --panel: #0f172a;
-      --card: #131c31;
-      --card-2: #18233d;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-2: #818cf8;
+      --bg: #070709;
+      --panel: #101014;
+      --card: #15151b;
+      --card-2: #1d1c24;
+      --text: #faf7f0;
+      --muted: #a8a29e;
+      --gold: #d4af37;
+      --gold-bright: #f5d061;
+      --gold-soft: rgba(212, 175, 55, 0.14);
       --ok: #22c55e;
-      --warn: #f59e0b;
+      --warn: #eab308;
       --err: #ef4444;
-      --border: #24324d;
+      --border: #2c281c;
     }
 
     * {
@@ -27,10 +55,10 @@
 
     body {
       margin: 0;
-      background: radial-gradient(circle at top, #111d36 0%, var(--bg) 55%);
+      background: radial-gradient(circle at top, #1d1708 0%, var(--bg) 52%);
       color: var(--text);
       min-height: 100vh;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     /* شاشة الدخول الخاصة */
@@ -46,26 +74,28 @@
       width: 100%;
       max-width: 420px;
       background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.75rem;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--gold);
+      border-radius: 18px;
+      padding: 1.8rem;
+      box-shadow: 0 20px 55px rgba(212, 175, 55, 0.14);
     }
 
     .auth-badge {
       display: inline-block;
       font-size: 0.8rem;
-      color: var(--accent);
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 0.25rem 0.7rem;
+      color: var(--gold-bright);
+      background: var(--gold-soft);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 0.25rem 0.75rem;
       border-radius: 999px;
       margin-bottom: 0.75rem;
+      font-weight: 700;
     }
 
     .auth-box h1 {
       margin: 0 0 0.35rem;
-      font-size: 1.5rem;
+      font-size: 1.55rem;
+      color: var(--gold-bright);
     }
 
     .auth-box p {
@@ -81,7 +111,7 @@
     .field label {
       display: block;
       font-size: 0.88rem;
-      color: var(--muted);
+      color: var(--gold);
       margin-bottom: 0.35rem;
     }
 
@@ -101,14 +131,15 @@
       border: 1px solid var(--border);
       background: var(--bg);
       color: var(--text);
-      font-size: 0.95rem;
+      font-size: 0.94rem;
     }
 
     input:focus,
     select:focus,
     textarea:focus {
       outline: none;
-      border-color: var(--accent);
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.16);
     }
 
     .btn {
@@ -121,39 +152,43 @@
       font-size: 0.92rem;
     }
 
-    .btn-primary {
+    .btn-gold {
       width: 100%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #06101f;
+      background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+      color: #09090b;
     }
 
-    .btn-accent {
-      background: var(--accent);
-      color: #06101f;
+    .btn-gold-sm {
+      background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+      color: #09090b;
     }
 
     .btn-ok {
-      background: rgba(34, 197, 94, 0.16);
+      background: rgba(34, 197, 94, 0.15);
       color: #4ade80;
-      border: 1px solid rgba(34, 197, 94, 0.35);
+      border: 1px solid rgba(34, 197, 94, 0.4);
       padding: 0.38rem 0.65rem;
       font-size: 0.82rem;
     }
 
     .btn-err {
-      background: rgba(239, 68, 68, 0.16);
+      background: rgba(239, 68, 68, 0.15);
       color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.35);
+      border: 1px solid rgba(239, 68, 68, 0.4);
       padding: 0.38rem 0.65rem;
       font-size: 0.82rem;
     }
 
     .btn-ghost {
       background: transparent;
-      color: var(--muted);
+      color: var(--gold-bright);
       border: 1px solid var(--border);
       padding: 0.45rem 0.75rem;
       font-size: 0.84rem;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
     }
 
     .auth-error {
@@ -174,7 +209,7 @@
     /* التطبيق الرئيسي */
     #app-screen {
       display: none;
-      max-width: 1180px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 1rem 1rem 3rem;
     }
@@ -186,16 +221,16 @@
       flex-wrap: wrap;
       gap: 0.85rem;
       background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      border: 1px solid var(--gold);
+      border-radius: 16px;
       padding: 1rem 1.25rem;
       margin-bottom: 1rem;
     }
 
     .topbar-title h2 {
       margin: 0;
-      font-size: 1.25rem;
-      color: var(--accent);
+      font-size: 1.3rem;
+      color: var(--gold-bright);
     }
 
     .topbar-title small {
@@ -216,30 +251,30 @@
       align-items: center;
       gap: 0.75rem;
       flex-wrap: wrap;
-      background: rgba(245, 158, 11, 0.12);
-      border: 1px solid rgba(245, 158, 11, 0.4);
-      color: #fde68a;
+      background: rgba(234, 179, 8, 0.14);
+      border: 1px solid var(--gold);
+      color: var(--gold-bright);
       border-radius: 12px;
-      padding: 0.8rem 1.1rem;
+      padding: 0.82rem 1.1rem;
       margin-bottom: 1.15rem;
       font-size: 0.9rem;
     }
 
     .alert-banner.clear {
-      background: rgba(34, 197, 94, 0.1);
-      border-color: rgba(34, 197, 94, 0.35);
-      color: #86efac;
+      background: var(--gold-soft);
+      border-color: rgba(212, 175, 55, 0.45);
+      color: var(--gold-bright);
     }
 
-    /* شبكة الأقسام الزمنية */
+    /* شبكة اليوم والشهر */
     .main-grid {
       display: grid;
-      grid-template-columns: 1fr 1.25fr;
+      grid-template-columns: 1.15fr 1fr;
       gap: 1.15rem;
       margin-bottom: 1.15rem;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
       .main-grid {
         grid-template-columns: 1fr;
       }
@@ -248,7 +283,7 @@
     .card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 1.15rem;
     }
 
@@ -258,32 +293,54 @@
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 0.85rem;
-      padding-bottom: 0.6rem;
+      padding-bottom: 0.65rem;
       border-bottom: 1px solid var(--border);
     }
 
     .card-header h3 {
       margin: 0;
       font-size: 1.08rem;
+      color: var(--gold-bright);
     }
 
     .pill {
       font-size: 0.78rem;
-      padding: 0.2rem 0.6rem;
+      padding: 0.22rem 0.65rem;
       border-radius: 999px;
-      background: var(--card-2);
-      color: var(--accent);
-      border: 1px solid var(--border);
+      background: var(--gold-soft);
+      color: var(--gold-bright);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      font-weight: 600;
+    }
+
+    .day-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.55rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .day-form-grid .span-2 {
+      grid-column: span 2;
+    }
+
+    @media (max-width: 560px) {
+      .day-form-grid {
+        grid-template-columns: 1fr;
+      }
+      .day-form-grid .span-2 {
+        grid-column: span 1;
+      }
     }
 
     .quick-add {
       display: grid;
-      grid-template-columns: 115px 1fr auto;
+      grid-template-columns: 120px 1fr auto;
       gap: 0.5rem;
       margin-bottom: 0.85rem;
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 540px) {
       .quick-add {
         grid-template-columns: 1fr;
       }
@@ -291,7 +348,7 @@
 
     .items-stack {
       display: grid;
-      gap: 0.6rem;
+      gap: 0.65rem;
     }
 
     .task-row {
@@ -301,13 +358,14 @@
       gap: 0.65rem;
       background: var(--panel);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.7rem 0.8rem;
+      border-radius: 12px;
+      padding: 0.75rem 0.85rem;
     }
 
     .task-row.alert-due {
-      border-color: rgba(245, 158, 11, 0.75);
-      box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.2);
+      border-color: var(--gold-bright);
+      box-shadow: 0 0 0 1px rgba(245, 208, 97, 0.35);
+      background: #1a1609;
     }
 
     .task-row.done .task-text {
@@ -318,42 +376,49 @@
     .task-main {
       display: flex;
       align-items: flex-start;
-      gap: 0.55rem;
+      gap: 0.6rem;
       flex: 1;
     }
 
     .tick-box {
-      width: 24px;
-      height: 24px;
+      width: 25px;
+      height: 25px;
       border-radius: 7px;
-      border: 1.5px solid var(--ok);
+      border: 1.5px solid var(--gold);
       background: transparent;
-      color: #4ade80;
+      color: var(--gold-bright);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       flex-shrink: 0;
       font-weight: 800;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
     }
 
     .tick-box.checked {
-      background: var(--ok);
-      color: #052e16;
+      background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+      color: #09090b;
     }
 
     .task-meta {
       font-size: 0.78rem;
       color: var(--muted);
       display: flex;
-      gap: 0.45rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
-      margin-top: 0.2rem;
+      margin-top: 0.25rem;
+    }
+
+    .meta-tag {
+      color: var(--gold);
+      background: var(--gold-soft);
+      padding: 0.08rem 0.45rem;
+      border-radius: 6px;
     }
 
     .tag-alert {
-      color: #fbbf24;
+      color: var(--gold-bright);
       font-weight: 700;
     }
 
@@ -363,7 +428,7 @@
       flex-shrink: 0;
     }
 
-    /* قسم السنة والأهداف */
+    /* السنة والأهداف */
     .year-section {
       margin-bottom: 1.15rem;
     }
@@ -381,7 +446,7 @@
       }
     }
 
-    /* قسم الإنجازات والأخطاء الصغيرة */
+    /* الإنجازات والأخطاء الصغيرة */
     .log-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -397,8 +462,8 @@
     .mistake-row {
       background: var(--panel);
       border: 1px solid rgba(239, 68, 68, 0.35);
-      border-radius: 10px;
-      padding: 0.7rem 0.8rem;
+      border-radius: 12px;
+      padding: 0.72rem 0.85rem;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -413,9 +478,9 @@
 
     .done-log-row {
       background: var(--panel);
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      border-radius: 10px;
-      padding: 0.65rem 0.8rem;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 12px;
+      padding: 0.68rem 0.85rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -433,6 +498,7 @@
     .settings-panel {
       display: none;
       margin-bottom: 1.15rem;
+      border-color: var(--gold);
     }
 
     .settings-grid {
@@ -448,25 +514,25 @@
   <!-- شاشة الدخول الخاصة -->
   <section id="lock-screen">
     <div class="auth-box">
-      <span class="auth-badge">مساحة شخصية محمية</span>
-      <h1>نظام سلمان الشخصي</h1>
-      <p>سجّل اسمك وكلمة مرورك للدخول إلى جدول اليوم، الشهر، السنة، وسجل الإنجازات والأخطاء.</p>
+      <span class="auth-badge">نظام خاص • أسود وذهبي</span>
+      <h1>نظام تقي الدين الشخصي</h1>
+      <p>أدخل اسمك وكلمة مرورك لفتح جدول اليوم، الشهر، السنة، العهود، وسجل الإنجازات والأخطاء.</p>
 
       <form id="login-form">
         <div class="field">
           <label for="login-user">الاسم الخاص بك</label>
-          <input type="text" id="login-user" placeholder="مثال: سلمان" required />
+          <input type="text" id="login-user" placeholder="تقي الدين" required />
         </div>
         <div class="field">
           <label for="login-pass">كلمة المرور</label>
-          <input type="password" id="login-pass" placeholder="••••••••" required />
+          <input type="password" id="login-pass" placeholder="••••" required />
         </div>
-        <button type="submit" class="btn btn-primary">دخول إلى النظام</button>
+        <button type="submit" class="btn btn-gold">دخول إلى النظام</button>
         <div id="login-error" class="auth-error"></div>
       </form>
 
       <div class="auth-hint">
-        البيانات الافتراضية أول مرة: الاسم <strong>سلمان</strong> — كلمة المرور <strong>2026</strong> (يمكنك تغييرهما من الإعدادات بعد الدخول).
+        البيانات الافتراضية: الاسم <strong>تقي الدين</strong> — كلمة المرور <strong>5388</strong>.
       </div>
     </div>
   </section>
@@ -475,10 +541,11 @@
   <main id="app-screen">
     <header class="topbar">
       <div class="topbar-title">
-        <h2 id="welcome-title">نظام سلمان الشخصي</h2>
+        <h2 id="welcome-title">نظام تقي الدين الشخصي</h2>
         <small id="date-subtitle"></small>
       </div>
       <div class="topbar-actions">
+        <button type="button" class="btn btn-ghost" id="install-guide-btn">تثبيت كتطبيق</button>
         <button type="button" class="btn btn-ghost" id="toggle-sound-btn">التنبيه الصوتي: مفعل</button>
         <button type="button" class="btn btn-ghost" id="toggle-settings-btn">إعدادات الدخول</button>
         <button type="button" class="btn btn-err" id="lock-btn">قفل النظام</button>
@@ -500,29 +567,37 @@
           <label for="new-password">كلمة المرور الجديدة</label>
           <input type="text" id="new-password" required />
         </div>
-        <button type="submit" class="btn btn-accent">حفظ بيانات الدخول</button>
+        <button type="submit" class="btn btn-gold-sm">حفظ بيانات الدخول</button>
       </form>
     </section>
 
     <!-- شريط حالة التنبيه -->
     <div id="alert-banner" class="alert-banner clear">
-      <span id="alert-text">حالة التنبيه: لا توجد مهام متأخرة أو مستحقة الآن.</span>
+      <span id="alert-text">حالة التنبيه: لا توجد مهام أو عهود مستحقة الآن.</span>
       <span id="stats-summary"></span>
     </div>
 
-    <!-- الصف الأول: جدول اليوم + جدول الشهر الأكبر -->
+    <!-- الصف الأول: جدول اليوم (مع المدرسة والصلاة والعهود) + جدول الشهر الأكبر -->
     <section class="main-grid">
       <!-- خانة جدول اليوم -->
       <div class="card">
         <div class="card-header">
           <h3>جدولي لهذا اليوم</h3>
-          <span class="pill" id="today-count">0 مهام</span>
+          <span class="pill" id="today-count">0 بنود</span>
         </div>
 
-        <form id="today-form" class="quick-add">
-          <input type="time" id="today-time" required />
-          <input type="text" id="today-title" placeholder="مهمة أو حصة اليوم..." required />
-          <button type="submit" class="btn btn-accent">إضافة</button>
+        <form id="today-form" class="day-form-grid">
+          <input type="time" id="today-time" />
+          <select id="today-type">
+            <option value="مهمة">مهمة يومية</option>
+            <option value="مدرسة">مدرسة</option>
+            <option value="صلاة">صلاة ونافلة</option>
+            <option value="عهد / لقاء">عهد / لقاء مع شخص</option>
+          </select>
+          <input type="text" id="today-title" class="span-2" placeholder="ماذا ستفعل؟ (مثال: عهد مع فلان / صلاة / دراسة)" required />
+          <input type="text" id="today-place" placeholder="المكان (مثال: المدرسة، المسجد، مكان اللقاء...)" />
+          <input type="text" id="today-duration" placeholder="المدة (مثال: ساعة، ساعتين، 45 دقيقة...)" />
+          <button type="submit" class="btn btn-gold-sm span-2">إضافة إلى جدول اليوم</button>
         </form>
 
         <div id="today-list" class="items-stack"></div>
@@ -532,13 +607,13 @@
       <div class="card">
         <div class="card-header">
           <h3>جدولي لهذا الشهر (المساحة الكبرى)</h3>
-          <span class="pill" id="month-count">0 أهداف/مهام شهرية</span>
+          <span class="pill" id="month-count">0 بنود شهرية</span>
         </div>
 
         <form id="month-form" class="quick-add">
           <input type="text" id="month-tag" placeholder="الأسبوع / المحور" />
-          <input type="text" id="month-title" placeholder="خطة أو التزام لهذا الشهر..." required />
-          <button type="submit" class="btn btn-accent">إضافة للشهر</button>
+          <input type="text" id="month-title" placeholder="خطة أو هدف كبير لهذا الشهر..." required />
+          <button type="submit" class="btn btn-gold-sm">إضافة للشهر</button>
         </form>
 
         <div id="month-list" class="items-stack"></div>
@@ -556,20 +631,20 @@
         <select id="year-category">
           <option value="هدف سنوي">هدف سنوي</option>
           <option value="إنجاز أريد تحقيقه">إنجاز أريد تحقيقه</option>
-          <option value="مهارة / دراسة">مهارة / دراسة</option>
+          <option value="تطوير وتفوق">تطوير وتفوق</option>
         </select>
         <input type="text" id="year-title" placeholder="ماذا تريد أن تحقق في هذه السنة؟" required />
-        <button type="submit" class="btn btn-accent">إضافة للسنة</button>
+        <button type="submit" class="btn btn-gold-sm">إضافة للسنة</button>
       </form>
 
       <div class="year-grid">
         <div>
-          <h4 style="margin: 0 0 0.5rem; color: var(--accent);">خارطة السنة والأهداف</h4>
+          <h4 style="margin: 0 0 0.5rem; color: var(--gold-bright);">خارطة السنة والأهداف</h4>
           <div id="year-list" class="items-stack"></div>
         </div>
         <div>
-          <h4 style="margin: 0 0 0.5rem; color: #a5b4fc;">رؤيتي وما أريد تحقيقه</h4>
-          <textarea id="vision-notes" rows="5" placeholder="اكتب هنا رؤيتك لهذه السنة وما تطمح للوصول إليه..."></textarea>
+          <h4 style="margin: 0 0 0.5rem; color: var(--gold);">رؤيتي وما أريد تحقيقه</h4>
+          <textarea id="vision-notes" rows="5" placeholder="اكتب هنا رؤيتك لهذه السنة وما تطمح أن تحققه..."></textarea>
           <div style="margin-top: 0.5rem; text-align: left;">
             <button type="button" class="btn btn-ghost" id="save-vision-btn">حفظ الرؤية السنوية</button>
           </div>
@@ -597,7 +672,7 @@
 
         <form id="mistake-form" class="quick-add">
           <input type="text" id="mistake-place" placeholder="أين حدث الخطأ؟" />
-          <input type="text" id="mistake-note" placeholder="ما هو الخطأ الصغير وكيف أتجنبه؟" required />
+          <input type="text" id="mistake-note" placeholder="ما هو الخطأ الصغير وكيف تتجنبه؟" required />
           <button type="submit" class="btn btn-err">تسجيل خطأ</button>
         </form>
 
@@ -607,16 +682,77 @@
   </main>
 
   <script>
-    const DB_KEY = "salman_personal_os_v2";
-    const SESSION_KEY = "salman_personal_os_unlocked_v2";
+    const DB_KEY = "taqieddin_gold_os_v3";
+    const SESSION_KEY = "taqieddin_gold_os_unlocked_v3";
 
     const defaultState = {
       auth: {
-        username: "سلمان",
-        password: "2026"
+        username: "تقي الدين",
+        password: "5388"
       },
       soundEnabled: true,
-      todayTasks: [],
+      todayTasks: [
+        {
+          id: "init_1",
+          time: "06:30",
+          type: "مدرسة",
+          title: "الذهاب إلى المدرسة",
+          place: "المدرسة",
+          duration: "حتى 13:20",
+          done: false,
+          doneAt: null
+        },
+        {
+          id: "init_2",
+          time: "13:20",
+          type: "مدرسة",
+          title: "العودة من المدرسة وصلاة الظهر",
+          place: "البيت / المسجد",
+          duration: "",
+          done: false,
+          doneAt: null
+        },
+        {
+          id: "init_3",
+          time: "15:30",
+          type: "مهمة",
+          title: "الاستيقاظ من النوم بعد الظهر",
+          place: "المنزل",
+          duration: "",
+          done: false,
+          doneAt: null
+        },
+        {
+          id: "init_4",
+          time: "",
+          type: "صلاة",
+          title: "صلاة الفجر + ركعتان قبل الفجر + الوتر",
+          place: "المسجد / البيت",
+          duration: "",
+          done: false,
+          doneAt: null
+        },
+        {
+          id: "init_5",
+          time: "",
+          type: "صلاة",
+          title: "صلاة الظهر: ثماني ركعات (أربع قبلها واثنتان بعدها)",
+          place: "المسجد / البيت",
+          duration: "",
+          done: false,
+          doneAt: null
+        },
+        {
+          id: "init_6",
+          time: "",
+          type: "عهد / لقاء",
+          title: "عهد ولقاء مع فلان (حدد الوقت والمكان والمدة أو عدّل هذا البند)",
+          place: "مكان اللقاء",
+          duration: "ساعة / ساعتين أو حسب الوقت",
+          done: false,
+          doneAt: null
+        }
+      ],
       monthTasks: [],
       yearGoals: [],
       visionText: "",
@@ -650,9 +786,9 @@
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.value = 740;
-        gain.gain.value = 0.08;
+        osc.type = "triangle";
+        osc.frequency.value = 660;
+        gain.gain.value = 0.09;
         osc.connect(gain);
         gain.connect(ctx.destination);
         osc.start();
@@ -663,7 +799,6 @@
       } catch {}
     }
 
-    // عناصر الدخول
     const lockScreen = document.getElementById("lock-screen");
     const appScreen = document.getElementById("app-screen");
     const loginForm = document.getElementById("login-form");
@@ -693,7 +828,7 @@
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const u = loginUser.value.trim();
-      const p = loginPass.value;
+      const p = loginPass.value.trim();
       if (u === state.auth.username && p === state.auth.password) {
         sessionStorage.setItem(SESSION_KEY, "1");
         loginError.textContent = "";
@@ -705,7 +840,10 @@
 
     document.getElementById("lock-btn").addEventListener("click", lockApp);
 
-    // الإعدادات والصوت
+    document.getElementById("install-guide-btn").addEventListener("click", () => {
+      alert("لتثبيت النظام على الشاشة الرئيسية لهاتفك كتطبيق:\nاضغط على قائمة المتصفح (⋮) ثم اختر (إضافة إلى الشاشة الرئيسية / Add to Home screen).");
+    });
+
     const settingsPanel = document.getElementById("settings-panel");
     document.getElementById("toggle-settings-btn").addEventListener("click", () => {
       settingsPanel.style.display = settingsPanel.style.display === "block" ? "none" : "block";
@@ -739,11 +877,11 @@
       if (state.soundEnabled) playAlertBeep();
     });
 
-    // التحقق من وقت التنبيه لمهام اليوم
     function isTaskDueOrPast(timeStr) {
       if (!timeStr) return false;
       const now = new Date();
       const [h, m] = timeStr.split(":").map(Number);
+      if (Number.isNaN(h) || Number.isNaN(m)) return false;
       const nowMinutes = now.getHours() * 60 + now.getMinutes();
       const taskMinutes = h * 60 + m;
       return nowMinutes >= taskMinutes;
@@ -759,7 +897,7 @@
       });
       document.getElementById("date-subtitle").textContent = formatted;
 
-      const dueAlerts = state.todayTasks.filter((t) => !t.done && isTaskDueOrPast(t.time));
+      const dueAlerts = state.todayTasks.filter((t) => !t.done && t.time && isTaskDueOrPast(t.time));
       const pendingToday = state.todayTasks.filter((t) => !t.done).length;
       const doneToday = state.todayTasks.filter((t) => t.done).length;
 
@@ -767,37 +905,44 @@
       const alertText = document.getElementById("alert-text");
       const statsSummary = document.getElementById("stats-summary");
 
-      statsSummary.textContent = `اليوم: ${doneToday} منجز ✓ | ${pendingToday} متبقٍ | أخطاء مسجلة: ${state.mistakes.length}`;
+      statsSummary.textContent = `اليوم: ${doneToday} منجز ✓ | ${pendingToday} متبقٍ | أخطاء: ${state.mistakes.length}`;
 
       if (dueAlerts.length > 0) {
         banner.classList.remove("clear");
-        alertText.textContent = `تنبيه نشط: لديك ${dueAlerts.length} مهمة حان وقتها أو تجاوزته (${dueAlerts.map((x) => x.title).join(" - ")}).`;
+        alertText.textContent = `تنبيه نشط: حان وقت (${dueAlerts.map((x) => x.title).join(" — ")}).`;
       } else {
         banner.classList.add("clear");
-        alertText.textContent = "حالة التنبيه: لا توجد مهام متأخرة أو مستحقة الآن.";
+        alertText.textContent = "حالة التنبيه: النظام جاهز وتحت المتابعة.";
       }
     }
 
-    // إضافة مهام اليوم
     document.getElementById("today-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const time = document.getElementById("today-time").value;
+      const type = document.getElementById("today-type").value;
       const title = document.getElementById("today-title").value.trim();
+      const place = document.getElementById("today-place").value.trim();
+      const duration = document.getElementById("today-duration").value.trim();
       if (!title) return;
+
       state.todayTasks.push({
         id: "td_" + Date.now(),
         time,
+        type,
         title,
+        place,
+        duration,
         done: false,
         doneAt: null
       });
       saveState();
       document.getElementById("today-title").value = "";
+      document.getElementById("today-place").value = "";
+      document.getElementById("today-duration").value = "";
       playAlertBeep();
       renderAll();
     });
 
-    // إضافة مهام الشهر
     document.getElementById("month-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const tag = document.getElementById("month-tag").value.trim() || "خطة الشهر";
@@ -816,7 +961,6 @@
       renderAll();
     });
 
-    // إضافة أهداف السنة
     document.getElementById("year-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const category = document.getElementById("year-category").value;
@@ -834,14 +978,12 @@
       renderAll();
     });
 
-    // حفظ الرؤية السنوية
     document.getElementById("save-vision-btn").addEventListener("click", () => {
       state.visionText = document.getElementById("vision-notes").value;
       saveState();
       alert("تم حفظ رؤيتك لهذه السنة.");
     });
 
-    // إضافة خطأ صغير
     document.getElementById("mistake-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const place = document.getElementById("mistake-place").value.trim() || "عام";
@@ -859,7 +1001,6 @@
       renderAll();
     });
 
-    // تبديل حالة الإنجاز (Tick)
     function toggleListItem(listName, id) {
       state[listName] = state[listName].map((item) => {
         if (item.id !== id) return item;
@@ -890,29 +1031,37 @@
     function renderAll() {
       updateDateAndAlerts();
 
-      // 1. اليوم
       const todayEl = document.getElementById("today-list");
-      const sortedToday = [...state.todayTasks].sort((a, b) => (a.time || "").localeCompare(b.time || ""));
-      document.getElementById("today-count").textContent = `${sortedToday.length} مهام`;
+      const sortedToday = [...state.todayTasks].sort((a, b) => {
+        if (!a.time && !b.time) return 0;
+        if (!a.time) return 1;
+        if (!b.time) return -1;
+        return a.time.localeCompare(b.time);
+      });
+      document.getElementById("today-count").textContent = `${sortedToday.length} بنود`;
       todayEl.innerHTML = "";
 
       if (!sortedToday.length) {
-        todayEl.innerHTML = '<p class="empty-msg">لا توجد مهام مسجلة لليوم بعد.</p>';
+        todayEl.innerHTML = '<p class="empty-msg">لا توجد بنود في جدول اليوم بعد.</p>';
       } else {
         sortedToday.forEach((item) => {
-          const isDue = !item.done && isTaskDueOrPast(item.time);
+          const isDue = !item.done && item.time && isTaskDueOrPast(item.time);
           const row = document.createElement("div");
           row.className = "task-row" + (item.done ? " done" : "") + (isDue ? " alert-due" : "");
+
+          const metaParts = [];
+          if (item.type) metaParts.push(`<span class="meta-tag">${escapeHtml(item.type)}</span>`);
+          if (item.time) metaParts.push(`<span>الساعة: ${escapeHtml(item.time)}</span>`);
+          if (item.place) metaParts.push(`<span>المكان: ${escapeHtml(item.place)}</span>`);
+          if (item.duration) metaParts.push(`<span>المدة: ${escapeHtml(item.duration)}</span>`);
+          if (isDue) metaParts.push(`<span class="tag-alert">• تنبيه: حان وقته</span>`);
 
           row.innerHTML = `
             <div class="task-main">
               <button type="button" class="tick-box ${item.done ? "checked" : ""}" title="تيكس الإنجاز">✓</button>
               <div>
                 <div class="task-text">${escapeHtml(item.title)}</div>
-                <div class="task-meta">
-                  <span>الوقت: ${escapeHtml(item.time || "--:--")}</span>
-                  ${isDue ? '<span class="tag-alert">• تنبيه: حان الوقت</span>' : ""}
-                </div>
+                <div class="task-meta">${metaParts.join("")}</div>
               </div>
             </div>
             <div class="row-actions">
@@ -926,13 +1075,12 @@
         });
       }
 
-      // 2. الشهر
       const monthEl = document.getElementById("month-list");
-      document.getElementById("month-count").textContent = `${state.monthTasks.length} عناصر شهرية`;
+      document.getElementById("month-count").textContent = `${state.monthTasks.length} بنود شهرية`;
       monthEl.innerHTML = "";
 
       if (!state.monthTasks.length) {
-        monthEl.innerHTML = '<p class="empty-msg">أضف أهدافك ومهامك الكبيرة لهذا الشهر هنا.</p>';
+        monthEl.innerHTML = '<p class="empty-msg">أضف جدولك الكبير لهذا الشهر هنا.</p>';
       } else {
         state.monthTasks.forEach((item) => {
           const row = document.createElement("div");
@@ -943,7 +1091,7 @@
               <button type="button" class="tick-box ${item.done ? "checked" : ""}" title="تيكس الإنجاز">✓</button>
               <div>
                 <div class="task-text">${escapeHtml(item.title)}</div>
-                <div class="task-meta"><span>${escapeHtml(item.tag)}</span></div>
+                <div class="task-meta"><span class="meta-tag">${escapeHtml(item.tag)}</span></div>
               </div>
             </div>
             <div class="row-actions">
@@ -957,13 +1105,12 @@
         });
       }
 
-      // 3. السنة
       const yearEl = document.getElementById("year-list");
       document.getElementById("year-count").textContent = `${state.yearGoals.length} أهداف سنوية`;
       yearEl.innerHTML = "";
 
       if (!state.yearGoals.length) {
-        yearEl.innerHTML = '<p class="empty-msg">حدد ما تريد تحقيقه خلال هذه السنة.</p>';
+        yearEl.innerHTML = '<p class="empty-msg">سجّل هنا أهدافك وما تريد تحقيقه في هذه السنة.</p>';
       } else {
         state.yearGoals.forEach((item) => {
           const row = document.createElement("div");
@@ -974,7 +1121,7 @@
               <button type="button" class="tick-box ${item.done ? "checked" : ""}" title="تيكس الإنجاز">✓</button>
               <div>
                 <div class="task-text">${escapeHtml(item.title)}</div>
-                <div class="task-meta"><span>${escapeHtml(item.category)}</span></div>
+                <div class="task-meta"><span class="meta-tag">${escapeHtml(item.category)}</span></div>
               </div>
             </div>
             <div class="row-actions">
@@ -988,7 +1135,6 @@
         });
       }
 
-      // 4. سجل الإنجازات (Tick)
       const doneItems = [
         ...state.todayTasks.filter((x) => x.done).map((x) => ({ ...x, scope: "اليوم" })),
         ...state.monthTasks.filter((x) => x.done).map((x) => ({ ...x, scope: "الشهر" })),
@@ -999,20 +1145,19 @@
       doneEl.innerHTML = "";
 
       if (!doneItems.length) {
-        doneEl.innerHTML = '<p class="empty-msg">عند الضغط على ✓ لأي مهمة أو هدف سيظهر هنا.</p>';
+        doneEl.innerHTML = '<p class="empty-msg">كل بند تضغط عليه ✓ سيظهر هنا في سجل الإنجازات.</p>';
       } else {
         doneItems.forEach((d) => {
           const div = document.createElement("div");
           div.className = "done-log-row";
           div.innerHTML = `
-            <span>✓ <strong>${escapeHtml(d.title)}</strong> <small style="color:var(--muted)">(${d.scope})</small></span>
-            <small style="color:#4ade80">${d.doneAt || "منجز"}</small>
+            <span><strong style="color:var(--gold-bright)">✓ ${escapeHtml(d.title)}</strong> <small style="color:var(--muted)">(${d.scope})</small></span>
+            <small style="color:var(--gold)">${d.doneAt || "منجز"}</small>
           `;
           doneEl.appendChild(div);
         });
       }
 
-      // 5. الأخطاء الصغيرة
       const mistakesEl = document.getElementById("mistakes-list");
       document.getElementById("mistakes-count").textContent = `${state.mistakes.length} خطأ`;
       mistakesEl.innerHTML = "";
